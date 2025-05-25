@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Testimonies{% endblock %}
+{% block content %}
+<h1 class="mb-4">Testimony Sharing Board</h1>
+<form method="post" class="mb-3">
+    <div class="input-group">
+        <input type="text" class="form-control bg-dark text-info border-info" name="message" placeholder="Ask for encouragement or how to share your testimony..." required>
+        <button class="btn btn-info text-dark" type="submit"><i class="bi bi-send"></i> Ask</button>
+    </div>
+</form>
+{% if ai_response %}
+<div class="alert alert-info mt-3 border-info text-dark bg-opacity-75">
+    <strong>Assistant:</strong> {{ ai_response }}
+</div>
+{% endif %}
+<form method="post" action="/testimony">
+    <div class="mb-3">
+        <label for="content" class="form-label">Share Your Testimony</label>
+        <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Share</button>
+</form>
+<h3>Testimonies</h3>
+<ul class="list-group">
+    {% for t in testimonies %}
+    <li class="list-group-item">
+        {{ t.content }}<br>
+        <small class="text-muted">{{ t.timestamp.strftime('%Y-%m-%d') }}</small>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

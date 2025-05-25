@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Chat with Holy Spirit Bot{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-lg mb-4">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-3"><i class="bi bi-robot text-info"></i> Holy Spirit Chatbot</h2>
+                <form method="post" class="mb-3">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="message" placeholder="Ask me about the Holy Spirit, fruits, or prayer..." required autofocus>
+                        <button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> Send</button>
+                    </div>
+                </form>
+                {% if response %}
+                <div class="alert alert-info mt-3">
+                    <strong>Bot:</strong> {{ response }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

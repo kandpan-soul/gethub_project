@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Home - Holy Spirit{% endblock %}
+{% block content %}
+<h1 class="mb-4">Who is the Holy Spirit?</h1>
+<p>The Holy Spirit is the third Person of the Trinity, our Helper, Comforter, and Guide. He empowers, teaches, and leads us into all truth.</p>
+<h3 class="mt-5">Key Verses</h3>
+<ul class="list-group">
+    {% for verse in verses %}
+    <li class="list-group-item"><strong>{{ verse.ref }}</strong>: {{ verse.text }}</li>
+    {% endfor %}
+</ul>
+<form method="post" class="mb-3">
+    <div class="input-group">
+        <input type="text" class="form-control bg-dark text-info border-info" name="message" placeholder="Ask about the Holy Spirit..." required>
+        <button class="btn btn-info text-dark" type="submit"><i class="bi bi-send"></i> Ask</button>
+    </div>
+</form>
+{% if ai_response %}
+<div class="alert alert-info mt-3 border-info text-dark bg-opacity-75">
+    <strong>Assistant:</strong> {{ ai_response }}
+</div>
+{% endif %}
+{% endblock %}

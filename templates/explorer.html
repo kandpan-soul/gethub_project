@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Scripture Explorer{% endblock %}
+{% block content %}
+<h1 class="mb-4">Scripture Explorer</h1>
+<form method="post" class="mb-3">
+    <div class="input-group">
+        <input type="text" class="form-control bg-dark text-info border-info" name="message" placeholder="Ask for verses about the Holy Spirit..." required>
+        <button class="btn btn-info text-dark" type="submit"><i class="bi bi-send"></i> Ask</button>
+    </div>
+</form>
+{% if ai_response %}
+<div class="alert alert-info mt-3 border-info text-dark bg-opacity-75">
+    <strong>Assistant:</strong> {{ ai_response }}
+</div>
+{% endif %}
+<p>Explore verses that mention the Holy Spirit:</p>
+<ul class="list-group">
+    {% for verse in verses %}
+    <li class="list-group-item"><strong>{{ verse.ref }}</strong>: {{ verse.text }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

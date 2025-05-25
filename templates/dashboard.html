@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="display-5">Welcome, {{ current_user.username }}!</h1>
+            <p class="lead">May the Holy Spirit guide you today.</p>
+        </div>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-journal-text display-4 text-primary"></i>
+                    <h5 class="card-title mt-3">Daily Devotion</h5>
+                    <p class="card-text">Reflect and journal with a daily verse.</p>
+                    <a href="/devotion" class="btn btn-outline-primary">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-flower1 display-4 text-success"></i>
+                    <h5 class="card-title mt-3">Fruits of the Spirit</h5>
+                    <p class="card-text">Track your growth in the fruits of the Spirit.</p>
+                    <a href="/fruits" class="btn btn-outline-success">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-chat-dots display-4 text-warning"></i>
+                    <h5 class="card-title mt-3">Prayer Wall</h5>
+                    <p class="card-text">Submit prayer requests and pray for others.</p>
+                    <a href="/prayer" class="btn btn-outline-warning">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-people-fill display-4 text-info"></i>
+                    <h5 class="card-title mt-3">Testimonies</h5>
+                    <p class="card-text">Share and read testimonies of faith.</p>
+                    <a href="/testimony" class="btn btn-outline-info">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-book display-4 text-secondary"></i>
+                    <h5 class="card-title mt-3">Scripture Explorer</h5>
+                    <p class="card-text">Discover verses about the Holy Spirit.</p>
+                    <a href="/explorer" class="btn btn-outline-secondary">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100 border border-primary-subtle position-relative">
+                <div class="card-body text-center">
+                    <i class="bi bi-stars display-4 text-primary"></i>
+                    <h5 class="card-title mt-3">AI Assistant</h5>
+                    <p class="card-text">Ask for spiritual guidance, encouragement, or practical help.</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#aiAssistantModal">Open Assistant</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- AI Assistant Modal -->
+<div class="modal fade" id="aiAssistantModal" tabindex="-1" aria-labelledby="aiAssistantModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-dark text-light border border-primary">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="aiAssistantModalLabel"><i class="bi bi-stars text-primary"></i> AI Assistant</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="post" action="/dashboard">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="aiMessage" class="form-label">How can I help you today?</label>
+            <textarea class="form-control" id="aiMessage" name="ai_message" rows="3" required></textarea>
+          </div>
+          {% if ai_response %}
+          <div class="alert alert-info mt-3">{{ ai_response }}</div>
+          {% endif %}
+        </div>
+        <div class="modal-footer border-0">
+          <button type="submit" class="btn btn-primary">Ask</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+{% endblock %}

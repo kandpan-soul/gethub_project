@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Daily Devotion{% endblock %}
+{% block content %}
+<h1 class="mb-4">Daily Devotion</h1>
+<form method="post">
+    <div class="mb-3">
+        <label for="verse" class="form-label">Verse</label>
+        <input type="text" class="form-control" id="verse" name="verse" required>
+    </div>
+    <div class="mb-3">
+        <label for="reflection" class="form-label">Reflection</label>
+        <textarea class="form-control" id="reflection" name="reflection" rows="3" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="journal" class="form-label">Journal Entry</label>
+        <textarea class="form-control" id="journal" name="journal" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Devotion</button>
+</form>
+<form method="post" class="mb-3">
+    <div class="input-group">
+        <input type="text" class="form-control bg-dark text-info border-info" name="message" placeholder="Ask for a devotion, reflection, or journaling tip..." required>
+        <button class="btn btn-info text-dark" type="submit"><i class="bi bi-send"></i> Ask</button>
+    </div>
+</form>
+{% if ai_response %}
+<div class="alert alert-info mt-3 border-info text-dark bg-opacity-75">
+    <strong>Assistant:</strong> {{ ai_response }}
+</div>
+{% endif %}
+{% endblock %}
