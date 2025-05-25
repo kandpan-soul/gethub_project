@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: holy-spirit-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        value: your_secret_key_here
+      - key: COHERE_API_KEY
+        value: 7PQEt4URxaK3mGGx1AVcHXu6QoqAqgRADiFWQPRS
+    plan: free
